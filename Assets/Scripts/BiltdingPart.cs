@@ -1,10 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class BiltdingPart : MonoBehaviour {
 
-   
-   
+
+    public event EventHandler CollisionWirhBomb;
 	// Use this for initialization
 	void Start () {
 	
@@ -19,6 +20,8 @@ public class BiltdingPart : MonoBehaviour {
     {
         if (collision.gameObject.name.Contains("Bomb"))
         {
+            if (CollisionWirhBomb != null)
+                CollisionWirhBomb(null, null);
             SpecialEffectHelper.Instance.Explosion(transform.position);
             Destroy(collision.gameObject,0.1f);
             Destroy(gameObject, 0.1f);

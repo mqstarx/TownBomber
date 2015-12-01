@@ -70,7 +70,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\BiltdingPart.cs" />
     <Compile Include="Assets\Scripts\BombScript.cs" />
-    <Compile Include="Assets\Scripts\ButtonScript.cs" />
+    <Compile Include="Assets\Scripts\GameController.cs" />
     <Compile Include="Assets\Scripts\PlaneScript.cs" />
     <Compile Include="Assets\Scripts\SpecialEffectHelper.cs" />
   </ItemGroup>

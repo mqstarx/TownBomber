@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class PlaneScript : MonoBehaviour {
 
@@ -9,6 +10,7 @@ public class PlaneScript : MonoBehaviour {
     public Vector2 movement;
     public Transform bp1;
     // Use this for initialization
+    public event EventHandler PlaneOverScreen;
 
 
 
@@ -53,7 +55,10 @@ public class PlaneScript : MonoBehaviour {
 
        if( gameObject.GetComponent<Transform>().position.x>10)
         {
-            InitBuldings();
+            //InitBuldings();
+
+            if (PlaneOverScreen != null)
+                PlaneOverScreen(null, null);
             gameObject.GetComponent<Transform>().position = new Vector2(-10, gameObject.GetComponent<Transform>().position.y - 0.5f);
 
 
