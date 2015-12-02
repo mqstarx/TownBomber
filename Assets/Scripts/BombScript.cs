@@ -20,9 +20,9 @@ public class BombScript : MonoBehaviour
        
     }
 
-    void OnCollisionEnter2D(Collision2D collision)
+    void OnTriggerEnter2D(Collider2D otherCollider)
     {
-        if(!collision.gameObject.name.Contains("bp"))
+        if(!otherCollider.gameObject.name.Contains("Fire"))
         {
             SpecialEffectHelper.Instance.Explosion(transform.position);
            

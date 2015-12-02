@@ -8,7 +8,7 @@ public class GameController : MonoBehaviour {
 
     public Transform bombPrefub;
     public Transform Bomber;
-    public Transform bp1;
+    public Transform Bilding;
     Transform plane;
     public float shootingRate = 0.25f;
     public float shootCooldown;
@@ -49,36 +49,38 @@ public class GameController : MonoBehaviour {
 
     void InitBuldings()
     {
-        int h_ = Random.Range(1, 4);
-        for (int i = 0; i < 17; i++)
+      
+        for (int i = 0; i < 10; i++)
         {
 
-            for (int j = 0; j < h_; j++)
-            {
-                var b = Instantiate(bp1) as Transform;
+            
+                var b = Instantiate(Bilding) as Transform;
                 BiltdingPart p_ = b.GetComponent<BiltdingPart>();
-                p_.CollisionWirhBomb += P__CollisionWirhBomb;
-                b.position = new Vector3((float)(-8.5 + i * ((float)b.GetComponent<Renderer>().bounds.size.x + 0.4)), (-3 + j * b.GetComponent<Renderer>().bounds.size.y));
+              //  p_.CollisionWirhBomb += P__CollisionWirhBomb;
+                b.position = new Vector3((float)(-8 + (i *( b.GetComponent<Renderer>().bounds.size.x+1.5) )),  b.GetComponent<Renderer>().bounds.size.y);
                 // buldings.Add(b);
-            }
-            h_ = Random.Range(1, 4);
+         
+           
         }
 
 
     }
     void InitBuldingsOver()
     {
-        Object[] _jjj = FindObjectsOfTypeIncludingAssets(typeof(BiltdingPart));
+        Object[] _jjj = Resources.FindObjectsOfTypeAll(typeof(BiltdingPart));
+        
+
+        
         // int h_ = 1
-        for (int i = 0; i < 17; i++)
+        for (int i = 0; i < 10; i++)
         {
 
             // for (int j = 0; j < h_; j++)
             //  {
-            var b = Instantiate(bp1) as Transform;
+            var b = Instantiate(Bilding) as Transform;
             BiltdingPart p_ = b.GetComponent<BiltdingPart>();
             p_.CollisionWirhBomb += P__CollisionWirhBomb;
-            b.position = new Vector3((float)(-8.5 + i * ((float)b.GetComponent<Renderer>().bounds.size.x + 0.4)), 0);
+            b.position = new Vector3((float)(-8 + i * ((float)b.GetComponent<Renderer>().bounds.size.x + 1)), 0);
 
             // }
 
@@ -144,6 +146,6 @@ public class GameController : MonoBehaviour {
 
     private void Ps__PlaneOverScreen(object sender, System.EventArgs e)
     {
-        InitBuldingsOver();
+       // InitBuldingsOver();
     }
 }

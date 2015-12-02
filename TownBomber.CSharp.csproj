@@ -68,11 +68,14 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\BildingScript.cs" />
     <Compile Include="Assets\Scripts\BiltdingPart.cs" />
     <Compile Include="Assets\Scripts\BombScript.cs" />
+    <Compile Include="Assets\Scripts\Earth.cs" />
     <Compile Include="Assets\Scripts\GameController.cs" />
     <Compile Include="Assets\Scripts\PlaneScript.cs" />
     <Compile Include="Assets\Scripts\SpecialEffectHelper.cs" />
+    <Compile Include="Assets\Scripts\bp1_oskolokScript.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>

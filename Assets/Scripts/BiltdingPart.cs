@@ -2,32 +2,80 @@
 using System.Collections;
 using System;
 
-public class BiltdingPart : MonoBehaviour {
+public class BiltdingPart : MonoBehaviour
+{
 
 
     public event EventHandler CollisionWirhBomb;
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
-    void OnCollisionEnter2D(Collision2D collision)
+    public int Health ;
+    public Transform Oskolok;
+    private int heals_begin;
+    // Use this for initialization
+    void Start()
     {
-        if (collision.gameObject.name.Contains("Bomb"))
+        heals_begin = Health;
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+
+
+    void OnTriggerEnter2D(Collider2D otherCollider)
+    {
+        if (otherCollider.gameObject.name.Contains("Bomb"))
         {
             if (CollisionWirhBomb != null)
                 CollisionWirhBomb(null, null);
-            SpecialEffectHelper.Instance.Explosion(transform.position);
-            Destroy(collision.gameObject,0.1f);
-            Destroy(gameObject, 0.1f);
+            //  SpecialEffectHelper.Instance.Explosion(transform.position);
+            Destroy(otherCollider.gameObject, 0.1f);
+
+
+            Destroy(gameObject);
+            Oskolki();
+
+        }
+        if (otherCollider.gameObject.name.Contains("Fire"))
+        {
+            Color c = gameObject.GetComponent<Renderer>().material.color;
+            Health -= 1;
+
+            gameObject.GetComponent<Renderer>().material.color = new Color(c.r, c.g- 2.55f  / heals_begin, c.b - 1.55f / heals_begin);
+
+            /* if (Health <= heals_begin / 2)
+                 gameObject.GetComponent<Renderer>().material.color = Color.yellow;
+
+             if (Health <= heals_begin / 3)
+                 gameObject.GetComponent<Renderer>().material.color = Color.red;
+             if (Health <= 0)
+                 Destroy(gameObject);*/
+
+            if (Health <= 0)
+            {
+                Destroy(gameObject);
+                Destroy(otherCollider.gameObject, 1);
+                Oskolki();
+            }
            
         }
        
 
+
+    }
+
+    private void Oskolki()
+    {
+        for (int i = 0; i < 6; i++)
+        {
+            var osk = Instantiate(Oskolok);
+           
+
+            osk.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(UnityEngine.Random.Range(-5, 5), UnityEngine.Random.Range(-5, 5));
+           
+            osk.transform.position = new Vector3(transform.position.x + 0.3f, transform.position.y);
+        }
     }
 }

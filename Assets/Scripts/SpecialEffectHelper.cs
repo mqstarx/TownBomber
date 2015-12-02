@@ -8,9 +8,10 @@ public class SpecialEffectHelper : MonoBehaviour {
     public static SpecialEffectHelper Instance;
 
     public ParticleSystem FireEffect;
-	// Use this for initialization
+    public ParticleSystem SmokeEffect;
+    // Use this for initialization
 
-        void Awake()
+    void Awake()
     {
         if(Instance!=null)
         {
@@ -23,6 +24,11 @@ public class SpecialEffectHelper : MonoBehaviour {
     public void Explosion(Vector3 position)
     {
         instantiate(FireEffect, position);
+    }
+
+    public void Smoke(Vector3 position)
+    {
+        instantiate(SmokeEffect, position);
     }
     private ParticleSystem instantiate(ParticleSystem prefub,Vector3 pos)
     {
