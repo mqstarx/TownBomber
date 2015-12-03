@@ -57,7 +57,7 @@ public class GameController : MonoBehaviour {
                 var b = Instantiate(Bilding) as Transform;
                 BiltdingPart p_ = b.GetComponent<BiltdingPart>();
               //  p_.CollisionWirhBomb += P__CollisionWirhBomb;
-                b.position = new Vector3((float)(-8 + (i *( b.GetComponent<Renderer>().bounds.size.x+1.5) )),  b.GetComponent<Renderer>().bounds.size.y);
+                b.position = new Vector3((float)(-6 + (i *( b.GetComponent<Renderer>().bounds.size.x+1) )),  b.GetComponent<Renderer>().bounds.size.y);
                 // buldings.Add(b);
          
            

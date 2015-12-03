@@ -59,7 +59,7 @@ public class PlaneScript : MonoBehaviour {
 
             if (PlaneOverScreen != null)
                 PlaneOverScreen(null, null);
-            gameObject.GetComponent<Transform>().position = new Vector2(-10, gameObject.GetComponent<Transform>().position.y - 0.5f);
+            gameObject.GetComponent<Transform>().position = new Vector2(-8, gameObject.GetComponent<Transform>().position.y - 0.5f);
 
 
         }

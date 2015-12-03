@@ -71,6 +71,7 @@
     <Compile Include="Assets\Scripts\BildingScript.cs" />
     <Compile Include="Assets\Scripts\BiltdingPart.cs" />
     <Compile Include="Assets\Scripts\BombScript.cs" />
+    <Compile Include="Assets\Scripts\ButtonScript.cs" />
     <Compile Include="Assets\Scripts\Earth.cs" />
     <Compile Include="Assets\Scripts\GameController.cs" />
     <Compile Include="Assets\Scripts\PlaneScript.cs" />

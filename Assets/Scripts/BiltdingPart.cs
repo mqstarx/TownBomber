@@ -68,11 +68,11 @@ public class BiltdingPart : MonoBehaviour
 
     private void Oskolki()
     {
-        for (int i = 0; i < 6; i++)
+        for (int i = 0; i < 15; i++)
         {
             var osk = Instantiate(Oskolok);
-           
 
+            osk.transform.Rotate(0, 0, UnityEngine.Random.Range(-30, 30));
             osk.gameObject.GetComponent<Rigidbody2D>().velocity = new Vector2(UnityEngine.Random.Range(-5, 5), UnityEngine.Random.Range(-5, 5));
            
             osk.transform.position = new Vector3(transform.position.x + 0.3f, transform.position.y);
