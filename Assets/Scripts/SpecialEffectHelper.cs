@@ -33,7 +33,7 @@ public class SpecialEffectHelper : MonoBehaviour {
     private ParticleSystem instantiate(ParticleSystem prefub,Vector3 pos)
     {
         ParticleSystem exp = Instantiate(prefub, pos, Quaternion.identity) as ParticleSystem;
-        Destroy(exp, exp.startLifetime);
+        Destroy(exp.gameObject, exp.startLifetime);
         return exp;
     }
 	void Start () {

@@ -5,6 +5,7 @@ public class GameController : MonoBehaviour {
 
 
     public UnityEngine.UI.Text ScoreTect;
+    public UnityEngine.UI.Text ZvanieText;
 
     public Transform bombPrefub;
     public Transform Bomber;

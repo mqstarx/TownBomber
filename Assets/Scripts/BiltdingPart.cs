@@ -39,12 +39,12 @@ public class BiltdingPart : MonoBehaviour
             Oskolki();
 
         }
-        if (otherCollider.gameObject.name.Contains("Fire"))
+        if (otherCollider.gameObject.name.Contains("FireEffect(Clone)") && !otherCollider.gameObject.name.Contains("Smoke"))
         {
             Color c = gameObject.GetComponent<Renderer>().material.color;
             Health -= 1;
 
-          //  gameObject.GetComponent<Renderer>().material.color = new Color(c.r, c.g- 2.55f  / heals_begin, c.b - 1.55f / heals_begin);
+           gameObject.GetComponent<Renderer>().material.color = new Color(c.r, c.g- 2.55f  / heals_begin, c.b - 1.55f / heals_begin);
 
             if (Damaged != null)
                 Damaged(null, null);
@@ -67,8 +67,6 @@ public class BiltdingPart : MonoBehaviour
             }
            
         }
-        else
-        { return; }
        
 
 
