@@ -6,7 +6,8 @@ public class BiltdingPart : MonoBehaviour
 {
 
 
-    public event EventHandler CollisionWirhBomb;
+    public event EventHandler Destroyed;
+    public event EventHandler Damaged;
     public int Health ;
     public Transform Oskolok;
     private int heals_begin;
@@ -28,8 +29,8 @@ public class BiltdingPart : MonoBehaviour
     {
         if (otherCollider.gameObject.name.Contains("Bomb"))
         {
-            if (CollisionWirhBomb != null)
-                CollisionWirhBomb(null, null);
+            if (Destroyed != null)
+                Destroyed(null, null);
             //  SpecialEffectHelper.Instance.Explosion(transform.position);
             Destroy(otherCollider.gameObject, 0.1f);
 
@@ -43,7 +44,10 @@ public class BiltdingPart : MonoBehaviour
             Color c = gameObject.GetComponent<Renderer>().material.color;
             Health -= 1;
 
-            gameObject.GetComponent<Renderer>().material.color = new Color(c.r, c.g- 2.55f  / heals_begin, c.b - 1.55f / heals_begin);
+          //  gameObject.GetComponent<Renderer>().material.color = new Color(c.r, c.g- 2.55f  / heals_begin, c.b - 1.55f / heals_begin);
+
+            if (Damaged != null)
+                Damaged(null, null);
 
             /* if (Health <= heals_begin / 2)
                  gameObject.GetComponent<Renderer>().material.color = Color.yellow;
@@ -55,12 +59,16 @@ public class BiltdingPart : MonoBehaviour
 
             if (Health <= 0)
             {
+                if (Destroyed != null)
+                    Destroyed(null, null);
                 Destroy(gameObject);
                 Destroy(otherCollider.gameObject, 1);
                 Oskolki();
             }
            
         }
+        else
+        { return; }
        
 
 

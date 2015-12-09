@@ -8,7 +8,10 @@ public class BildingScript : MonoBehaviour {
         public int floors_max =4;
         public Transform bp1;
        public bool RandoomFloors = false;
-	void Start () {
+        public event EventHandler BildingPartDestroyed;
+    public event EventHandler BildingPartDamaged;
+
+    void Start () {
 
         int h_ = UnityEngine.Random.Range(1, floors_max);
 
@@ -18,16 +21,26 @@ public class BildingScript : MonoBehaviour {
         {
             var b = Instantiate(bp1) as Transform;
             BiltdingPart p_ = b.GetComponent<BiltdingPart>();
-            p_.CollisionWirhBomb += P__CollisionWirhBomb;
+            p_.Destroyed += P__PartDestroyed;
+            p_.Damaged += P__Damaged;
             b.position = new Vector3(transform.position.x, (-3 + j * b.GetComponent<Renderer>().bounds.size.y));
             // buldings.Add(b);
         }
         h_ = UnityEngine.Random.Range(1, floors_max);
     }
 
-    private void P__CollisionWirhBomb(object sender, EventArgs e)
+    private void P__Damaged(object sender, EventArgs e)
     {
-       // throw new NotImplementedException();
+       if(BildingPartDamaged!=null)
+        {
+            BildingPartDamaged(null, null);
+        }
+    }
+
+    private void P__PartDestroyed(object sender, EventArgs e)
+    {
+        if (BildingPartDestroyed != null)
+            BildingPartDestroyed(null, null);
     }
 
     // Update is called once per frame
