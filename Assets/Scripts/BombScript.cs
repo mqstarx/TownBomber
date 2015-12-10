@@ -6,12 +6,12 @@ public class BombScript : MonoBehaviour
 
 
    
-    int i = 0;
+   
     // Use this for initialization
     void Start()
     {
 
-        //Destroy(gameObject, 5);       
+        Destroy(gameObject, 5);       
     }
 
     // Update is called once per frame
@@ -22,7 +22,7 @@ public class BombScript : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D otherCollider)
     {
-        if(!otherCollider.gameObject.name.Contains("Fire"))
+        if(!otherCollider.gameObject.name.Contains("Fire") && !otherCollider.gameObject.name.Contains("bp1(Clone)") && !otherCollider.gameObject.name.Contains("Smoke")&&  !otherCollider.gameObject.name.Contains("bp1_oskolok(Clone)"))
         {
             SpecialEffectHelper.Instance.Explosion(transform.position);
            

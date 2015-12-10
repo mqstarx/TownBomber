@@ -8,6 +8,8 @@ public class bp1_oskolokScript : MonoBehaviour {
     public float LiveTime;
     
 	void Start () {
+
+        Destroy(gameObject, LiveTime);
 	
 	}
 	
@@ -18,7 +20,7 @@ public class bp1_oskolokScript : MonoBehaviour {
         if (LiveTime <= 0)
         {
             SpecialEffectHelper.Instance.Smoke(transform.position);
-            Destroy(gameObject, 0.1f);
+           // Destroy(gameObject, 0.1f);
         }
 	}
 }

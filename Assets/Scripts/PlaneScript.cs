@@ -9,6 +9,7 @@ public class PlaneScript : MonoBehaviour {
     public Vector2 direction = new Vector2(-1, 0);
     public Vector2 movement;
     public Transform bp1;
+    public event EventHandler OnPlaneDestroed;
     // Use this for initialization
     public event EventHandler PlaneOverScreen;
 
@@ -70,7 +71,8 @@ public class PlaneScript : MonoBehaviour {
         if (collision.gameObject.name.Contains("bp"))
         {
             SpecialEffectHelper.Instance.Explosion(transform.position);
-
+            if (OnPlaneDestroed != null)
+                OnPlaneDestroed(null, null);
             Destroy(gameObject);
         }
     }

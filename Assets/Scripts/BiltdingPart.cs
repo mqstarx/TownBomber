@@ -11,10 +11,17 @@ public class BiltdingPart : MonoBehaviour
     public int Health ;
     public Transform Oskolok;
     private int heals_begin;
+    public bool RandomHealth;
     // Use this for initialization
     void Start()
     {
-        heals_begin = Health;
+        if (RandomHealth)
+        {
+            heals_begin = UnityEngine.Random.Range(1, Health);
+            Health = heals_begin;
+        }
+        else
+            heals_begin = Health;
 
     }
 
@@ -29,22 +36,37 @@ public class BiltdingPart : MonoBehaviour
     {
         if (otherCollider.gameObject.name.Contains("Bomb"))
         {
-            if (Destroyed != null)
-                Destroyed(null, null);
+
             //  SpecialEffectHelper.Instance.Explosion(transform.position);
-            Destroy(otherCollider.gameObject, 0.1f);
-
-
-            Destroy(gameObject);
-            Oskolki();
+            //Destroy(otherCollider.gameObject, 0.5f);
+            Color c = gameObject.GetComponent<Renderer>().material.color;
+            Health -= 3;
+            Color d = new Color(1f, c.g - (1f - (float)Health / (float)heals_begin), c.b - (1f - (float)Health / (float)heals_begin));
+            gameObject.GetComponent<Renderer>().material.color = d;
+            //  gameObject.GetComponent<Renderer>().material.color = new Color(c.r, c.g - 2.55f / heals_begin, c.b - 1.55f / heals_begin);
+            if (Health <= 0)
+            {
+                if (Destroyed != null)
+                    Destroyed(null, null);
+                Destroy(gameObject);
+               // Destroy(otherCollider.gameObject, 1);
+                Oskolki();
+            }
+            else
+            {
+                if (Damaged != null)
+                    Damaged(null, null);
+                Destroy(otherCollider.gameObject);
+                SpecialEffectHelper.Instance.Explosion(otherCollider.transform.position);
+            }
 
         }
         if (otherCollider.gameObject.name.Contains("FireEffect(Clone)") && !otherCollider.gameObject.name.Contains("Smoke"))
         {
             Color c = gameObject.GetComponent<Renderer>().material.color;
             Health -= 1;
-
-           gameObject.GetComponent<Renderer>().material.color = new Color(c.r, c.g- 2.55f  / heals_begin, c.b - 1.55f / heals_begin);
+            Color d = new Color(1f, c.g - (1f - (float)Health / (float)heals_begin), c.b - (1f - (float)Health / (float)heals_begin ));
+            gameObject.GetComponent<Renderer>().material.color = d;
 
             if (Damaged != null)
                 Damaged(null, null);
@@ -64,6 +86,11 @@ public class BiltdingPart : MonoBehaviour
                 Destroy(gameObject);
                 Destroy(otherCollider.gameObject, 1);
                 Oskolki();
+            }
+            else
+            {
+                if (Damaged != null)
+                    Damaged(null, null);
             }
            
         }

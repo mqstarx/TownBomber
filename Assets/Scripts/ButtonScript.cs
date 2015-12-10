@@ -12,9 +12,5 @@ public class ButtonScript : MonoBehaviour {
 	void Update () {
 	
 	}
-    public void ert()
-    {
-        int g = 9;
-
-    }
+    
 }
